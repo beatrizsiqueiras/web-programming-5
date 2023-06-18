@@ -15,13 +15,13 @@ const registerStudent = () => {
     let thirdGrade = document.getElementById('thirdGrade').value ? parseFloat(document.getElementById('thirdGrade').value) : 0.0;
     let form = document.getElementById('studentRegistrationForm');
     let schoolSituation = '';
-    let arithmeticAverage = (firstGrade + secondGrade + thirdGrade) / 3;
+    let arithmeticAverage = parseFloat((firstGrade + secondGrade + thirdGrade) / 3);
 
     if (arithmeticAverage < 4.0) {
         schoolSituation = 'Disapproved';
     } else if (arithmeticAverage >= 4.0 && arithmeticAverage <= 7.0) {
         schoolSituation = 'Recuperation';
-    } else if (arithmeticAverage > 7.0){
+    } else if (arithmeticAverage > 7.0) {
         schoolSituation = 'Approved';
     }
 
@@ -48,12 +48,14 @@ const registerStudent = () => {
             hideClass: {
                 popup: 'animate__animated animate__fadeOutUp'
             }
+        }).then((e) => {
+            form.reset();
+            window.location.reload(true);
         });
-        form.reset();
     } else {
         Swal.fire({
             icon: 'error',
-            title: 'Student already registered.',
+            title: 'School enrollment already registered.',
             showClass: {
                 popup: 'animate__animated animate__fadeInDown'
             },
@@ -63,6 +65,20 @@ const registerStudent = () => {
         })
     }
 
+}
+
+const deleteStudent = (enrollment) => {
+    let studentToDelete;
+    let studentsList = getLocalStorage();
+
+    studentsList.map(student => {
+        if (student['enrollment'] === enrollment) {
+            studentToDelete = JSON.stringify(studentsList.indexOf(student));
+        }
+    });
+    studentsList.splice(studentToDelete, 1);
+    setLocalStorage(studentsList);
+    window.location.reload(true);
 }
 
 window.onload = () => {
@@ -84,9 +100,19 @@ window.onload = () => {
             <li class="list-group-item d-flex justify-content-between align-items-start">
                 <div class="ms-2 me-auto">
                     <div class="fw-bold">${student['enrollment']} - ${student['studentName']}</div>
-                    Arithmetic average: ${student['arithmeticAverage']}
+                    <p>
+                        <small>Grade 1º: ${student['firstGrade']} | </small>
+                        <small>Grade 2º: ${student['secondGrade']} | </small>
+                        <small>Grade 3º: ${student['thirdGrade']}</small>
+                    </p>
+                    Arithmetic average: ${student['arithmeticAverage'].toFixed(2)}
                 </div>
-                <span class="badge ${badgeColor} rounded-pill">${student['schoolSituation']}</span>
+                <div class="d-flex align-self-end">
+                    <span class="badge ${badgeColor} rounded-pill">${student['schoolSituation']}</span>
+                </div>
+                <div class="d-flex align-self-start">
+                    <button type="button" class="btn btn-light" onclick="deleteStudent('${student['enrollment']}')"><i class="bi bi-trash"></i></button>
+                </div>
             </li>
         `;
         studentsListDiv.innerHTML += htmlStudentsList;
