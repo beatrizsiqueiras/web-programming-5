@@ -1,6 +1,6 @@
 let buttonToChange = document.getElementById('buttonToChange');
 
-let changeButtonColor = () => {
+const changeButtonColor = () => {
     buttonToChange.innerHTML = "You clicked";
     buttonToChange.style.cssText =
         'background-color: green;' +

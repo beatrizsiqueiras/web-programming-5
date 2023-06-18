@@ -1,4 +1,4 @@
-let buttonInteraction = () => {
+const buttonInteraction = () => {
     Swal.fire({
         icon: 'success',
         title: 'You Clicked',

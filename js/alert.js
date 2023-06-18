@@ -1,4 +1,4 @@
-let openAlert = () => { alert("Hello, World!") };
+const openAlert = () => { alert("Hello, World!") };
 
 window.onload = () => {
     openAlert();

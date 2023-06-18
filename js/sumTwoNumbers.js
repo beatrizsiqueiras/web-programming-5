@@ -1,4 +1,4 @@
-let sumNumbers = () => {
+const sumNumbers = () => {
     let sumResultDiv = document.getElementById('sumResult');
     let firstNumber = parseFloat(document.getElementById('firstNumber').value);
     let secondNumber = parseFloat(document.getElementById('secondNumber').value);

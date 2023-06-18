@@ -1,8 +1,7 @@
-let countNumbers = () => {
+const countNumbers = () => {
     let count = 1;
     let countingNumbersDiv = document.getElementById('countingNumbers');
-
-    function displayNumber() {
+    const displayNumber = () => {
         if (count <= 100) {
             if (count === 1) {
                 countingNumbersDiv.innerHTML += `START... ${count} ->`;

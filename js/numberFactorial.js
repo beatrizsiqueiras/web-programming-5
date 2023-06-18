@@ -1,7 +1,7 @@
-let numberFactorial = () => {
+const numberFactorial = () => {
     let factorialResultDiv = document.getElementById('factorialResult');
-    let numberToCalc = parseInt(document.getElementById('numberToCalc').value);
-    let factorialResult = 1;
+    let numberToCalc = parseFloat(document.getElementById('numberToCalc').value);
+    let factorialResult = 1.0;
 
     factorialResultDiv.innerHTML = '';
 
