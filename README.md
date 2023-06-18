@@ -1,3 +1,2 @@
-# programacao-web-5
-
-Repositório destinado a disciplina Programação Web do curso Sistemas de Informação (5º período)
+# web-programming-5
+Repository for the Web Programming discipline of the Information Systems course (5th period)
